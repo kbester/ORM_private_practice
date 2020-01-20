@@ -13,6 +13,6 @@ namespace Private_Practice.DAL
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Illness> Illnesses { get; set; }
-        public DbSet<Visits> Visits { get; set; }
+        public DbSet<Visit> Visit { get; set; }
     }
 }
