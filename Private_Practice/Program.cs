@@ -22,12 +22,22 @@ namespace Private_Practice
                 .UseStartup<Startup>();
     }
 
+    public class CodeFirstContext : DbContext
+    {
+        public CodeFirst() : base()
+        {
+            Database.SetInitializer(new DropCreateDatabaseAlways<CodeFirstContext>());
+        }
+
+
+    }
+    public enum Gender { Male, Female, Other }
     interface IPerson
     {
         Guid PersonId { get; set; }
         string Name { get; set; }
         string Surname { get; set; }
-        enum GenderChoice { get; set; }
+        Gender? Gender { get; set; }
         int IdNumber { get; set; }
         string Email { get; set; }
         int ContactNo { get; set; }
@@ -43,7 +53,7 @@ namespace Private_Practice
         string CountryCode { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public enum GenderChoice { get; set; }
+        public Gender? Gender { get; set; }
         public int IdNumber { get; set; }
         public string Email { get; set; }
         public int ContactNo { get; set; }
@@ -59,7 +69,7 @@ namespace Private_Practice
         public string IllnessId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public enum GenderChoice { get; set; }
+        public Gender? Gender { get; set; }
         public int IdNumber { get; set; }
         public string Email { get; set; }
         public int ContactNo { get; set; }
