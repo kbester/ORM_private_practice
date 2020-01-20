@@ -21,15 +21,4 @@ namespace Private_Practice
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
-
-    public class CodeFirstContext : DbContext
-    {
-        public CodeFirst() : base()
-        {
-            Database.SetInitializer(new DropCreateDatabaseAlways<CodeFirstContext>());
-        }
-
-
-    }
-
 }

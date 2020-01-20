@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Private_Practice.Models
 {
-    class Illnesses
+    public class Illness
     {
         // Pull Illness data from ilness API
         string IllnessId { get; set; }

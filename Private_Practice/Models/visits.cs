@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Private_Practice.Models
 {
-    class Visits
+    public class Visits
     {
         Guid VisitId { get; set; }
         Guid DoctorId { get; set; }
