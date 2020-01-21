@@ -7,6 +7,8 @@ namespace Private_Practice.Models
     {
         public Guid ClientId { get; set; }
         public Guid PersonId { get; set; }
-        public string IllnessId { get; set; }
+        public Guid IllnessId { get; set; }
+
+        public virtual ICollection<Visit> Visits { get; set; }
     }
 }

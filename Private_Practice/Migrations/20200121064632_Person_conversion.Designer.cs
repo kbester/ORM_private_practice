@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Private_Practice.DAL;
 
 namespace Private_Practice.Migrations
 {
     [DbContext(typeof(PracticeContext))]
-    partial class PracticeContextModelSnapshot : ModelSnapshot
+    [Migration("20200121064632_Person_conversion")]
+    partial class Person_conversion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,7 +91,7 @@ namespace Private_Practice.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("Visits");
+                    b.ToTable("Visit");
                 });
 
             modelBuilder.Entity("Private_Practice.Models.Client", b =>

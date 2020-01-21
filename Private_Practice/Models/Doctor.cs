@@ -10,5 +10,6 @@ namespace Private_Practice.Models
         public string Specialist { get; set; }
         //Set from dictionary
         public string CountryCode { get; set; }
+        public virtual ICollection<Visit> Visits { get; set; }
     }
 }

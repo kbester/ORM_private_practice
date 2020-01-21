@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Private_Practice.DAL;
 
 namespace Private_Practice.Migrations
 {
     [DbContext(typeof(PracticeContext))]
-    partial class PracticeContextModelSnapshot : ModelSnapshot
+    [Migration("20200121060005_Pluralisation")]
+    partial class Pluralisation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,23 +21,9 @@ namespace Private_Practice.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Private_Practice.Models.Illness", b =>
+            modelBuilder.Entity("Private_Practice.Models.Client", b =>
                 {
-                    b.Property<Guid>("IllnessId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IllnessName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IllnessId");
-
-                    b.ToTable("Illnesses");
-                });
-
-            modelBuilder.Entity("Private_Practice.Models.Person", b =>
-                {
-                    b.Property<Guid>("PersonId")
+                    b.Property<Guid>("ClientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -45,8 +33,45 @@ namespace Private_Practice.Migrations
                     b.Property<int>("ContactNo")
                         .HasColumnType("int");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IllnessId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClientId");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("Private_Practice.Models.Doctor", b =>
+                {
+                    b.Property<Guid>("DoctorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ContactNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CountryCode")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -61,14 +86,31 @@ namespace Private_Practice.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Specialist")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PersonId");
+                    b.HasKey("DoctorId");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Doctors");
+                });
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
+            modelBuilder.Entity("Private_Practice.Models.Illness", b =>
+                {
+                    b.Property<string>("IllnessId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IllnessName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IllnessId");
+
+                    b.ToTable("Illnesses");
                 });
 
             modelBuilder.Entity("Private_Practice.Models.Visit", b =>
@@ -89,36 +131,7 @@ namespace Private_Practice.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("Visits");
-                });
-
-            modelBuilder.Entity("Private_Practice.Models.Client", b =>
-                {
-                    b.HasBaseType("Private_Practice.Models.Person");
-
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IllnessId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasDiscriminator().HasValue("Client");
-                });
-
-            modelBuilder.Entity("Private_Practice.Models.Doctor", b =>
-                {
-                    b.HasBaseType("Private_Practice.Models.Person");
-
-                    b.Property<string>("CountryCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("DoctorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Specialist")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("Doctor");
+                    b.ToTable("Visit");
                 });
 
             modelBuilder.Entity("Private_Practice.Models.Visit", b =>
